@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1 th:text="${headerMessage}"></h1>
-<form method="POST" th:action="@{/admin/editUser}" th:object="${user}" accept-charset="UTF-8">
+<form method="POST" th:action="@{/admin/edituser}" th:object="${user}" accept-charset="UTF-8">
   <input type="hidden" th:field="*{id}"/>
   <table>
     <tr>

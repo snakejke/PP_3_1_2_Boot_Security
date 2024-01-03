@@ -32,10 +32,10 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping(value = "/admin/allUsers")
+    @GetMapping(value = "/admin/allusers")
     public String displayAllUsers(Model model) {
         model.addAttribute("userList", userService.getAllUsersWithRoles());
-        return "allUsers";
+        return "allusers";
     }
 
     @GetMapping("/user")
@@ -52,16 +52,16 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/admin/addUser")
+    @GetMapping("/admin/adduser")
     public String displayNewUserForm(Model model) {
         List<Role> availableRoles = userService.getAllRoles();
         model.addAttribute("headerMessage", "Add User Details");
         model.addAttribute("user", new User());
         model.addAttribute("availableRoles", availableRoles);
-        return "addUser";
+        return "adduser";
     }
 
-    @PostMapping("/admin/addUser")
+    @PostMapping("/admin/adduser")
     public String saveNewUser(@ModelAttribute User user, BindingResult result) {
         if (result.hasErrors()) {
             return "error";
@@ -72,10 +72,10 @@ public class UserController {
         user.setPassword(encodedPassword);
 
         userService.saveUser(user);
-        return "redirect:/admin/allUsers";
+        return "redirect:/admin/allusers";
     }
 
-    @GetMapping("/admin/editUser")
+    @GetMapping("/admin/edituser")
     public String displayEditUserForm(@RequestParam("id") Long id, Model model) {
         User user = userService.getUserById(id);
         List<Role> availableRoles = userService.getAllRoles();
@@ -83,10 +83,10 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("availableRoles", availableRoles);
         model.addAttribute("password", "");
-        return "editUser";
+        return "edituser";
     }
 
-    @PostMapping("/admin/editUser")
+    @PostMapping("/admin/edituser")
     public String saveEditedUser(@ModelAttribute("user") @Valid User user,
             @RequestParam String password, BindingResult result) {
         if (result.hasErrors()) {
@@ -96,13 +96,13 @@ public class UserController {
             user.setPassword(passwordEncoder.encode(password));
         }
         userService.saveUser(user);
-        return "redirect:/admin/allUsers";
+        return "redirect:/admin/allusers";
     }
 
-    @GetMapping("/admin/deleteUser")
+    @GetMapping("/admin/deleteuser")
     public String deleteUserById(@RequestParam("id") Long id) {
         userService.deleteUser(id);
-        return "redirect:/admin/allUsers";
+        return "redirect:/admin/allusers";
     }
 
     @GetMapping("/403")
