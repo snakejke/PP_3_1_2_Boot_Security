@@ -13,5 +13,10 @@ INSERT INTO `roles` (`name`) VALUES ('ADMIN');
 
 INSERT INTO `users_roles` (`USER_ID`, `ROLE_ID`) VALUES (1, 1);
 INSERT INTO `users_roles` (`USER_ID`, `ROLE_ID`) VALUES (2, 1),(2, 2);
+INSERT INTO `users_roles` (`USER_ID`, `ROLE_ID`) VALUES (3, 1);
+INSERT INTO `users_roles` (`USER_ID`, `ROLE_ID`) VALUES (4, 1);
+INSERT INTO `users_roles` (`USER_ID`, `ROLE_ID`) VALUES (5, 1);
+INSERT INTO `users_roles` (`USER_ID`, `ROLE_ID`) VALUES (6, 1);
+INSERT INTO `users_roles` (`USER_ID`, `ROLE_ID`) VALUES (7, 1);
 
 
