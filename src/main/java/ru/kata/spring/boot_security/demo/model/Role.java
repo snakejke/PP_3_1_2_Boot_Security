@@ -1,7 +1,6 @@
 package ru.kata.spring.boot_security.demo.model;
 
 import java.util.List;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +18,8 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    //@Transient
+
+    @Transient
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 

@@ -11,7 +11,6 @@ import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
 @Service
-@Transactional
 public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
@@ -19,17 +18,18 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     public UserServiceImp(UserRepository userRepository, RoleRepository roleRepository) {
-        super();
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    @Transactional(readOnly = true)
+    public List<User> getAllUsersWithRoles() {
+        return userRepository.findAllUsersWithRoles();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getUserById(Long id) {
         User user = userRepository.findById(id).orElse(null);
         if (user != null) {
@@ -39,21 +39,25 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    @Transactional
     public void saveUser(User user) {
         userRepository.save(user);
     }
 
     @Override
+    @Transactional
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }

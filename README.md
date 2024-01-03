@@ -1,4 +1,10 @@
+# логин и пароль admin'a - admin@example.com 333
+# логин и пароль user'a - user@example.com 111
+
+
 Практическая задача
+
+
 
 **Условие:**
 

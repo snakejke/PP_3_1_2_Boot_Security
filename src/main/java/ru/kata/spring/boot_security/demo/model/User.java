@@ -33,7 +33,7 @@ public class User implements UserDetails {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "users_roles",
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
