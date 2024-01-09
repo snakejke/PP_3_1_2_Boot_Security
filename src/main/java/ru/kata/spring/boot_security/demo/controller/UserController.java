@@ -23,7 +23,7 @@ public class UserController {
     private UserService userService;
     private PasswordEncoder passwordEncoder;
 
-    public UserController() {
+    public UserController() {//todo: зачем?
     }
 
     @Autowired
@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping(value = "/admin/allusers")
     public String displayAllUsers(Model model) {
         model.addAttribute("userList", userService.getAllUsersWithRoles());
-        return "allusers";
+        return "allusers";//todo: достаточно users (all -избыточно)
     }
 
     @GetMapping("/user")
@@ -52,13 +52,13 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/admin/adduser")
+    @GetMapping("/admin/adduser")//todo: описал..
     public String displayNewUserForm(Model model) {
         List<Role> availableRoles = userService.getAllRoles();
         model.addAttribute("headerMessage", "Add User Details");
         model.addAttribute("user", new User());
         model.addAttribute("availableRoles", availableRoles);
-        return "adduser";
+        return "adduser";//todo: описал..
     }
 
     @PostMapping("/admin/adduser")
@@ -66,11 +66,10 @@ public class UserController {
         if (result.hasErrors()) {
             return "error";
         }
-
         String plainPassword = user.getPassword();
         String encodedPassword = passwordEncoder.encode(plainPassword);
         user.setPassword(encodedPassword);
-
+        //todo: codeStyle пустые строки в методе
         userService.saveUser(user);
         return "redirect:/admin/allusers";
     }
@@ -83,7 +82,7 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("availableRoles", availableRoles);
         model.addAttribute("password", "");
-        return "edituser";
+        return "edituser";//todo: описал..
     }
 
     @PostMapping("/admin/edituser")
@@ -96,13 +95,13 @@ public class UserController {
             user.setPassword(passwordEncoder.encode(password));
         }
         userService.saveUser(user);
-        return "redirect:/admin/allusers";
+        return "redirect:/admin/allusers";//todo: описал..
     }
 
     @GetMapping("/admin/deleteuser")
     public String deleteUserById(@RequestParam("id") Long id) {
         userService.deleteUser(id);
-        return "redirect:/admin/allusers";
+        return "redirect:/admin/allusers";//todo: описал..
     }
 
     @GetMapping("/403")

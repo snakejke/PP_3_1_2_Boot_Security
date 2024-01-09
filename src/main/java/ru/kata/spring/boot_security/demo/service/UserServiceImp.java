@@ -39,7 +39,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional//todo: проговаривали, вынужден повторяться. Выносим над классом
     public void saveUser(User user) {
         userRepository.save(user);
     }

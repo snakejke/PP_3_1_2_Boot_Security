@@ -36,7 +36,7 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "users_roles",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},//todo: прописными
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
 
     private List<Role> roles = new ArrayList<>();
@@ -44,7 +44,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String email, int age,
+    public User(Long id, String firstName, String lastName, String email, int age,//todo: мы должны на этом этапе перейти к ссылочным переменным
             List<Role> roles) {
         this.id = id;
         this.firstName = firstName;
